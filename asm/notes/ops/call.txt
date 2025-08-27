@@ -4,7 +4,7 @@ call essentially does three important things:
 
     pushes instuction pointer (EIP) onto the stack,
     preforms a jump operation to the specified function,
-    and then with a combination of these two operations; allows the us to jump to somewhere else in the program, then jump back to where we where
+    and then with a combination of these two operations; allows the us to jump to somewhere else in the program, then jump back to where we were
 
     this also allows us to remove any hardcoded return values and can be called from anywhere in our code
 
