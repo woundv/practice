@@ -10,7 +10,7 @@ _start:
     mov ebx, 1                  ; define file descriptor
     mov ecx, esp                ; the bytes to write
     mov edx, 4                  ; the amount of the bytes to write
-    int 0x80                    ; preform system call
+    int 0x80                    ; perform system call
     mov eax, 1                  ; sys_exit system call
     mov ebx, 0                  ; set exit status = 0
-    int 0x80                    ; preform system call
+    int 0x80                    ; perform system call

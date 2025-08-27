@@ -10,7 +10,7 @@ _start:
     mov ebx, 1      ; stdout file descriptor
     mov ecx, msg    ; the bytes to write
     mov edx, len    ; number of bytes to write
-    int 0x80        ; preform system call
+    int 0x80        ; perform system call
     mov eax, 1      ; sys_exit system call
     mov ebx, 0      ; exit status of 0
-    int 0x80        ; preform systemcall
+    int 0x80        ; perform systemcall

@@ -2,7 +2,7 @@ global _start
 
 section .data
     addr db "yellow", 0x0a      ; define byte string as "yellow" followed by a new line
-    len equ $ - addr            ; preform operation to find location (length) of the string (see /asm/learned/hw.asm for more information)
+    len equ $ - addr            ; perform operation to find location (length) of the string (see /asm/learned/hw.asm for more information)
 
 section .text
 _start:
@@ -12,7 +12,7 @@ _start:
     mov ebx, 1                  ; define file descriptor
     mov ecx, addr               ; the bytes to write
     mov edx, len                ; the amount of bytes to write
-    int 0x80                    ; preform system call
+    int 0x80                    ; perform system call
     mov eax, 1                  ; sys_exit system call
     mov ebx, 0                  ; set exit status = 0
-    int 0x80                    ; preform system call
+    int 0x80                    ; perform system call

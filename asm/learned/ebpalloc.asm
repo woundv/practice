@@ -4,7 +4,7 @@ _start:
     call func               ; call function "func" (see /asm/notes/call.txt for more information)
     mov eax, 1              ; sys_exit system call
     mov ebx, 0              ; set exit status = 0
-    int 0x80                ; preform system call
+    int 0x80                ; perform system call
 
 func:
     mov ebp, esp            ; moves the value at the top of the stack into the base pointer
@@ -16,6 +16,6 @@ func:
     mov ebx, 1              ; define file descriptor
     mov ecx, esp            ; the bytes to write
     mov edx, 3              ; the amount of bytes to write
-    int 0x80                ; preform system call
+    int 0x80                ; perform system call
     mov esp, ebp            ; move the value of ebp into the stack pointer
     ret                     ; return to the top of the stack (see why in /asm/notes/ret.txt)

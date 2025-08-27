@@ -9,7 +9,7 @@ this operation does the following:
         _start:
             call foo        ; this calls the function "foo" (see /asm/notes/call.txt for more info)
             mov eax, 1      ; sys_exit system call
-            int 0x80        ; preform the system call
+            int 0x80        ; perform the system call
         foo:
             mov ebx 0       ; in the function "foo" we set the exit status to zero
             ret             ; now, ret will first pop the return address from the top of the stack into the instruction pointer,
