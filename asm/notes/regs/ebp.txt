@@ -1,6 +1,6 @@
 # any info about the "ebp" register will be put into this file #
 
-the extended base pointer(ebp) register serves the purpose of preserving the stack frame, it allows us to store the value of the stack pointer into it
+the extended base pointer (ebp) register serves the purpose of preserving the stack frame, it allows us to store the value of the stack pointer into it
 which lets the stack pointer to "wander" and have its value modified without the worry of losing its initial value
 
 one way ive seen it described was the following:
