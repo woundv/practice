@@ -1,0 +1,13 @@
+# any info about the "call" operation will be put into this file #
+
+call essentially does three important things:
+
+    pushes instuction pointer (EIP) onto the stack,
+    preforms a jump operation to the specified function,
+    and then with a combination of these two operations; allows the us to jump to somewhere else in the program, then jump back to where we where
+
+    this also allows us to remove any hardcoded return values and can be called from anywhere in our code
+
+this is very effective and useful for calling functions in more abstracted languages, particularly bi-compatability with c
+
+an example of the call operation being used can be found in ../learned/callop.asm

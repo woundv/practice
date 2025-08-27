@@ -1,0 +1,26 @@
+# any info about the "ebp" register will be put into this file #
+
+the extended base pointer(ebp) register serves the purpose of preserving the stack frame, it allows us to store the value of the stack pointer into it
+which lets the stack pointer to "wander" and have its value modified without the worry of losing its initial value
+
+one way ive seen it described was the following:
+
+    "ebp is for a stack frame so that when you enter a 
+    function, ebp can get a copy of esp at that point. Everything already on the 
+    stack, the return address, passed-in parameters, etc. and things that are global 
+    for that function (local variables) will now be a static distance away from the 
+    stack frame pointer for the duration of the function. esp is now free to wander 
+    about as the compiler desires and can be used when nesting to other functions 
+    (each needs to preserve the ebp naturally)"
+    
+    - somebody on stack overflow
+
+if a function calls another fucntion which preserves the value of esp in ebp aswell, it will kind of mess everything that we're trying to do up,
+so it is best practice to do the following:
+
+    foo:
+        push ebp    ; we can push the value of ebp to the stack at the start of the function to preserve it => this proccess,
+        ...         ; along with assigning esp's value to ebp is known as the "prologue"
+        ...
+        pop ebp     ; then we can pop it in order to go back to the initial value of ebp before we called it again => this proccess,
+                    ; along with returning esp's value from ebp is known as the "epilogue"

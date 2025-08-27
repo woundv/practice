@@ -1,0 +1,126 @@
+# any info about "the stack" will be put into this file #
+
+this is kind of what the stack looks like:
+
+    ESP = 28    ; the stack pointer, will initially be set to the highest memory address
+                ; the stack uses increments of 4 due to the fact that it takes in 4 byte integers
+                ; the asterisk (*) represents where the ESP is pointing to, for ease of reading
+    [00]    0
+    [04]    0
+    [08]    0
+    [12]    0
+    [16]    0
+    [20]    0
+    [24]    0
+  * [28]    0
+
+when we push a value to the stack it will "grow" downwards
+
+    NASM instruction:
+        push 1234
+    
+    stack output:
+
+        ESP = 24    ; value decreases by 4, value written to that place in memory
+
+        [00]    0
+        [04]    0
+        [08]    0
+        [12]    0
+        [16]    0
+        [20]    0
+      * [24]    1234
+        [28]    0
+
+and so when we push multiple values to the stack...
+
+    NASM instruction:
+        push 1234
+        push 4444
+        push 256
+        push 369
+    
+    stack output:
+
+        ESP = 12    ;value decreased by 12 because 3 new (4 byte) instructions were pushed to the stack
+
+        [00]    0
+        [04]    0
+        [08]    0
+      * [12]    369
+        [16]    256
+        [20]    4444
+        [24]    1234
+        [28]    0
+
+we can also interact directly with the ESP (stack pointer) when "pushing"
+
+    NASM instruction:
+        push 1234
+        push 4444
+        push 256
+
+        sub esp, 4
+        mov [esp], dword 369    ; the reason we use a "dword" is because the size of a dword is 4 bytes
+                                ; this satisfies the stack's need for 4 byte integers
+    stack output:
+
+        ESP = 12
+
+        [00]    0
+        [04]    0
+        [08]    0
+      * [12]    369
+        [16]    256
+        [20]    4444
+        [24]    1234
+        [28]    0
+
+now, lets introduce the pop operation
+
+    NASM instruction:
+        push 1234
+        push 4444
+        push 256
+        push 369
+
+        pop eax     ; when we pop the stack to a register,
+                    ; the register is assigned the value of ESP, effectively taking in the *highest* value on the stack
+
+    stack output:
+
+        ESP = 16    ; the stack pointer is now incremented by 4 
+                    ; this is because the top of the stack is no longer 12
+
+        [00]    0
+        [04]    0
+        [08]    0
+        [12]    369     ; eax is now assigned the value of 369, the value is not lost from memory, nor the stack. 
+      * [16]    256     ; however if another push instruction were to occur, it would be written over
+        [20]    4444
+        [24]    1234
+        [28]    0
+
+we can also interact directly witht the ESP (stack pointer) when "popping"
+
+    NASM instruction:
+        push 1234
+        push 4444
+        push 256
+        push 369
+
+        mov eax, dword [esp]    ; this moves the 4 byte value from the top of the stack (ESP) into eax
+        add esp, 4              ; then we increment esp by 4 in order for the ESP to be pointing to the correct place in the stack
+
+    stack output:
+
+        ESP = 16
+
+        [00]    0
+        [04]    0
+        [08]    0
+        [12]    369             ; again we are doing the same thing that pop instruction does, just this time interacting directly with ESP
+      * [16]    256
+        [20]    4444
+        [24]    1234
+        [28]    0

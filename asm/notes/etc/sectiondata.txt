@@ -1,0 +1,14 @@
+# any info about the "section .data" definition will be put into this file #
+
+section .data
+
+"db" is 1 byte   ; 8 bit
+name db "string" ; this is a string literal
+name db 0xff     ; this is a hex literal
+name db 100      ; this is a decimal literal
+
+"dw" is 2 bytes
+name dw 1000     ; 16 bit
+
+"dd" is 4 bytes
+name dd 100000   ; 32 bit

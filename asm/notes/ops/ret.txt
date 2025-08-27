@@ -1,0 +1,22 @@
+# any info about the "ret" operation will be put into this file #
+
+this operation does the following:
+    
+    we will use a code example to explain
+
+        global _start
+
+        _start:
+            call foo        ; this calls the function "foo" (see /asm/notes/call.txt for more info)
+            mov eax, 1      ; sys_exit system call
+            int 0x80        ; preform the system call
+        foo:
+            mov ebx 0       ; in the function "foo" we set the exit status to zero
+            ret             ; now, for ret it will first pop the return address from the top of the stack into the instruction pointer,
+                            ; then it will hand off the control over to the address that it popped,
+                            ; in our case, it will "return" to the instruction directly following the "call" operation, call and ret work hand in hand
+
+    the expected output of this piece of code should be the following:
+
+        input > echo exit code: $?
+       output > 0

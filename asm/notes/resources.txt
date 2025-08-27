@@ -1,0 +1,4 @@
+# any resources will be put into this file #
+
+the entirety of the "intro to x86 assembly language" series by Davy Wynbiral
+    link: https://www.youtube.com/watch?v=wLXIWKUWpSs&list=PLmxT2pVYo5LB5EzTPZGfFN0c2GDiSXgQe
